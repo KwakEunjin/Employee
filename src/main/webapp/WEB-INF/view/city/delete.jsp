@@ -10,6 +10,7 @@
 </head>
 <title>delete.jsp</title>
 <body class="container">
+<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
 <a class="btn btn-primary" href="#/list">list...</a>			<!-- http://localhost:8080/Employee/city/main.html#/list 로 간다. -->
 
 </body>

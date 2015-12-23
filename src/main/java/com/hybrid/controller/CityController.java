@@ -157,7 +157,7 @@ public class CityController {
 	 */
 	@RequestMapping(value={"","/"}, method = RequestMethod.POST)				//POST(insert) 방식
 	@ResponseBody																//json으로 전송
-	public CityCommand postCityAppend(@RequestBody CityCommand command) {			//@RequestBody. property가 동일한 이름이 넘어오면 여기에 data가 들어감.
+	public CityCommand postCityAppend(@RequestBody CityCommand command) {			//@RequestBody. property(변수이름)가 view에서 동일한 이름이 넘어오면 여기에 data가 들어감.
 		log.info("postCityAppend()... city id = " + command.getId());
 		
 		command.validate();
@@ -176,7 +176,7 @@ public class CityController {
 	 */
 	@RequestMapping(value="/{id:[0-9]+}", method = RequestMethod.PUT)			//PUT(modify) 방식
 	@ResponseBody																//json으로 전송
-	public CityCommand putCityModify(@PathVariable int id, @RequestBody CityCommand command) {		//@RequestBody.view에서 데이터가 넘어오면 받음.
+	public CityCommand putCityModify(@PathVariable int id, @RequestBody CityCommand command) {		//@RequestBody.property(변수이름)가 view에서 동일한 이름이 넘어오면 여기에 data가 들어감.
 		log.info("putCityModify()... id = " + id);
 		log.info("putCityModify()... city id = " + command.getId());
 		

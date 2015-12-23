@@ -153,6 +153,7 @@
 									All Tasks</strong> <i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-tasks --></li>
+					
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
@@ -198,6 +199,10 @@
 									All Alerts</strong> <i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-alerts --></li>
+					
+					
+				<c:url var="user_logout" value="/user/logout"/>	
+					
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
@@ -209,7 +214,7 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+						<li><a href="${user_logout}"><i class="fa fa-sign-out fa-fw"></i>
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
@@ -281,6 +286,8 @@
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
+			<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
+			<!-- 현재 Employee에서 작동하는 최상단 container는 sitemesh부분 임. main, main의 부분page에도 container가 있는데, main은 sitemesh가, 부분 페이지는 angular가 container 부분을 빼준다. main에서 요소 검사 하면 container가 한개인것을 볼수 있다. -->
 				<sitemesh:write property='body' />
 				<!-- 해당 jsp의 body 부분이 들어 온다. 즉, body 나오기 전에 위의 h1이 먼저 나온다. -->
 			</div>

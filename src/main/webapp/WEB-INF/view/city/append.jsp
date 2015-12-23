@@ -10,6 +10,7 @@
 </head>
 <title>append.jsp</title>
 <body class="container">
+<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
 <a class="btn btn-primary" href="#/list">list...</a>			<!-- http://localhost:8080/Employee/city/main.html#/list 로 간다. -->
 	<div class="row">								<!-- class="row"  - grid system. 아래에서 col-sm-6 col-sm-offset-3 이런식으로 칸을 주기 위해 설정 -->
 		<div class="col-sm-6 col-sm-offset-3">									<!-- small size에서는 6칸, 왼쪽에서 offset은 3칸 -->

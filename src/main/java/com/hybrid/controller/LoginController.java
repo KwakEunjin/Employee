@@ -38,9 +38,10 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody		//기본적으로 RequestMapping은 view type으로 취급,ResponseBody을 추가 하면 return type을 data로 취급 한다.
-	public LoginCommand login (@RequestBody LoginCommand command,HttpSession session){		
-		//@RequestBody. property가 동일한 이름이 넘어오면 여기에 data가 들어감.
-		/*HttpSession - session을 가져 오기 위해 사용*/
+	public LoginCommand login (@RequestBody LoginCommand command, HttpSession session){		
+		//@RequestBody. property(변수이름)가 동일한 이름이 넘어오면 여기에 data가 들어감.
+		/*HttpSession - spring에서 session을 생성하기 위해서는 위와 같이 해야 한다. 
+		 *HttpSession session = new HttpSession 이런식으로는 안됨. 기존에 session이 있으면 자동으로 받고 아니면 그냥 생성만 함.*/
 		log.info("email = " + command.getEmail());
 		log.info("password = " + command.getPassword());
 		
@@ -56,11 +57,32 @@ public class LoginController {
 	
 	@RequestMapping(value="logout", method = RequestMethod.GET)
 	public String logout(HttpSession session){
+		/*HttpSession - spring에서 session을 생성하기 위해서는 위와 같이 해야 한다. 
+		 *HttpSession session = new HttpSession 이런식으로는 안됨. 기존에 session이 있으면 자동으로 받고 아니면 그냥 생성만 함.*/
 		log.info("logout...");
 		session.invalidate();				//session 종료
 					
 		return "redirect:/user/login.html";
 	}
+	
+	
+	@RequestMapping(value = "/logincheck", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> logincheck(HttpSession session){
+		Map<String, Object> map = new HashMap<>();
+		
+		Boolean login = (Boolean) session.getAttribute("login");
+		if (login != null && login == true){
+			map.put("login", true);
+			map.put("member", session.getAttribute("member"));
+			
+		} else {
+			map.put("login", false);
+		}
+		
+		return map;
+	}
+	
 	
 	@ExceptionHandler					//spring에서 exception이 발생했을때 작동됨.
 	@ResponseBody						
@@ -71,5 +93,4 @@ public class LoginController {
 		error.put("message", e.getMessage());
 		return error;
 	}
-	
 }

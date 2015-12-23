@@ -14,7 +14,7 @@
 
 	
 	public arrayList<shop> selectCategory(String [] list);
-	case
+
 	
 
 </body>

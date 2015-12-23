@@ -31,6 +31,7 @@
 </script>
 </head>
 <body data-ng-controller="mainController" class="container">
+<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. 최상단은 sitemesh의 container-->
 
 </body>
 </html>

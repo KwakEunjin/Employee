@@ -9,6 +9,7 @@
 
 </head>
 <body class="container">
+<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
 
 	<div class="tabel-responsive">
 		<ul class="pagination">

@@ -16,7 +16,7 @@ public class LoginService {
 		Member member =  memberDao.selectByEmailAndPassword(email, password);
 		if(member == null) {
 			throw new LoginFailException("존재하지 않는 user 이거나 password가 틀렸습니다.");
-			// 존재하지 않는~~~  가 message 부분으로 들어간다.
+			// 존재하지 않는~~~  가 message로 들어가서 return 된다.
 		}
 		return member;
 	}
