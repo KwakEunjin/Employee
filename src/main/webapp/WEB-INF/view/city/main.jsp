@@ -70,11 +70,6 @@
 			$scope.staticOrFixed = str;
 		}
 		
-		var ajax = $http.get("/Employee/user/logincheck");
-		ajax.then(function(value) {
-			$scope.loginstatus = value.data;
-		});
-		
 	});														
 			
 </script>
@@ -95,8 +90,8 @@
 </head>
 <body data-ng-controller="mainController" class="container">	
 <!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
-<!-- 현재 Employee에서 작동하는 최상단 container는 sitemesh부분 임. main, main의 부분page에도 container가 있는데, main은 sitemesh가, 부분 페이지는 angular가 container 부분을 빼준다. main에서 요소 검사 하면 container가 한개인것을 볼수 있다. -->
-	<pre>{{loginstatus}}</pre>
+<!-- 현재 Employee에서 작동하는 최상단 controller와 container는 sitemesh부분 임. main, main의 부분page에도 있는데 자동으로 빠짐. main에서 요소 검사 하면 body tag가 한개인것을 볼수 있다. -->
+	<pre>{{loginstatus}}</pre>  <!-- loginstatus값은 menu_sider에서 가져온다. -->
 	<h1>{{title}}</h1>
 	<div data-ng-view>
 

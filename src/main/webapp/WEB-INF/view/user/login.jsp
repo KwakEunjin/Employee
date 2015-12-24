@@ -29,7 +29,25 @@
 	app.controller("mainController", function($scope, $http) {
 		console.log("mainController...");
 		
+		$scope.$watch("loginstatus", function() {
+			console.log("$watch... loginstatus");
+			if ($scope.loginstatus == true)
+				location.href = '<c:url value ="/user/logout"/>';
+		})
+		/* 로그인 하고 다음 화면에서 뒤로 가기 누르면 로그아웃 되는 구문. */
+		/* 해당 jsp에서 해당 변수가 변경되는 것을 감지. */
+		/* 작동 순서 = mainController(1) - navController - ajax - mainController(2)에 적용.
+		최종 mainController(2) 이후에 login.jsp가 작동 되어야 하는데
+		nav가 끝난 시점에 ajax가 서버로 데이터를 보내는 시간이 걸린다.그래서 nav가 끝난시점에 먼저 login.jsp가 작동됨.
+		menu_sider.jsp를 보면 mainController에는 loginstatus변수가 없다. nav에서 지정 했을뿐.
+		login.jsp가 실행 되는 시점에는 mainController안의  loginstatus 변수 지정이 없어서 undefined라고 뜸.
+		그래서 watch 기능을 써서 loginstatus가 undefined -> true또는 false로 바뀌는 시점(ajax이후)을 계속 watch 하여
+		해당 $scope 실행. */
+		
+		
+		
 // 		$scope.login = {};				자동으로 만들어 주기떄문에 이항목은 없어도 된다.
+
 		$scope.submit = function() {
 			alert("submit...");
 			console.log("submit()....");
@@ -38,7 +56,7 @@
 				email : $scope.login.email,
 				password : $scope.login.password
 			});
-
+// 			email,password에 입력값을 저장하고,post 방식으로 ${LOGIN_URL}을 실행.
 			ajax.then(function(value) {
 				/*3개 뜨는데 마지막 function은 필요 없다.value는 위의 ajax로 실행시킨 쿼리의 return값이 자동으로 입력 된다.*/
 				/* 성공시 */

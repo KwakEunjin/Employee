@@ -19,15 +19,34 @@
 <link rel="stylesheet" href="${menu_sider}" />
 <script type="text/javascript" src="${menu_sider_js}"></script>
 
+<script type="text/javascript">
+	app.controller("navController", function($scope,$http) {
+	
+		var ajax = $http.get("<c:url value="/user/logincheck"/>");
+		ajax.then(function(value) {
+			$scope.$parent.loginstatus = value.data.login;	
+			/* $parent를 넣는 이유는 navController의 상위인 mainController에 적용 */
+			/* loginstatus는 main에 <pre>{{loginstatus}}</pre>에 띄운다. */
+			/* loginController에서 map값이 넘어오니, data의 login 값을 매칭 시켜야 한다. */
+		});
+		
+	});
+
+</script>
+
+
 </head>
 <body data-ng-controller="mainController">
 	<!-- 아래에 container가 있어서 삭제 됐음. 중복 안됨 -->
+	<!-- 최상단 controller. main과 부분 페이지에 있는 controller는 자동으로 빠진다. -->
 
 	<div id="wrapper">
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+		<nav data-ng-controller="navController" class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
+			<!-- data-ng-controller="navController" 만들어서 ajax 호출 -->
+			
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -35,7 +54,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">World</a>
+				<a class="navbar-brand" href="index.html">Employee</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -153,7 +172,7 @@
 									All Tasks</strong> <i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-tasks --></li>
-					
+
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
@@ -199,10 +218,9 @@
 									All Alerts</strong> <i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-alerts --></li>
-					
-					
-				<c:url var="user_logout" value="/user/logout"/>	
-					
+
+
+
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
@@ -214,8 +232,14 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="${user_logout}"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
+						
+						
+						<li data-ng-hide="loginstatus">{{loginstatus}}<a href="<c:url value="/user/login.html"/>"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
+<!-- 						loginstatus은 maincontroller에 있는데, angular가 상위 단계 로직도 읽어 들여서 불러옴.loginstatus가 true일때 hide -->
+						<li data-ng-show="loginstatus">{{loginstatus}}<a href="<c:url value="/user/logout"/>"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+<!-- 						loginstatus가 true일때 show -->
+					
+					
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -234,13 +258,18 @@
 								</span>
 							</div> <!-- /input-group -->
 						</li>
+						
+						
 						<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
 								Dashboard</a></li>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-								Charts<span class="fa arrow"></span></a>
+								World<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="flot.html">Flot Charts</a></li>
-								<li><a href="morris.html">Morris.js Charts</a></li>
+								<li><a href="<c:url value="/city/main.html"/>">City</a></li>
+								<li><a href="<c:url value="/country/main.html"/>">Country</a></li>
+								<!-- var가 없으면 출력을 한다. -->
+							
+								
 							</ul> <!-- /.nav-second-level --></li>
 						<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
 								Tables</a></li>
@@ -286,8 +315,8 @@
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-			<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
-			<!-- 현재 Employee에서 작동하는 최상단 container는 sitemesh부분 임. main, main의 부분page에도 container가 있는데, main은 sitemesh가, 부분 페이지는 angular가 container 부분을 빼준다. main에서 요소 검사 하면 container가 한개인것을 볼수 있다. -->
+				<!-- bootstrap의 grid system을 사용 하기 위해 container 필요. -->
+				<!-- 최상단 container. main, main의 부분page에도 container가 있는데, main은 sitemesh가, 부분 페이지는 angular가 container 부분을 빼준다. main에서 요소 검사 하면 container가 한개인것을 볼수 있다. -->
 				<sitemesh:write property='body' />
 				<!-- 해당 jsp의 body 부분이 들어 온다. 즉, body 나오기 전에 위의 h1이 먼저 나온다. -->
 			</div>

@@ -7,6 +7,8 @@
   <!-- Map decorators to path patterns. -->
   <mapping path="/city/main.html" decorator="/WEB-INF/decorators/menu_sider.jsp"/>		<!-- URL에  /city/main.html로 입력된 것에 대해서 적용하겠다. -->
   <mapping path="/country/main.html" decorator="/WEB-INF/decorators/menu_sider.jsp"/>
+  <mapping path="/user/login.html" decorator="/WEB-INF/decorators/menu_sider.jsp"/>
+  
 <!--   <mapping path="/*.special.jsp" decorator="/special-decorator.html"/> -->
 
   <!-- Alternative convention. This is more verbose but allows multiple decorators
