@@ -39,6 +39,8 @@
 
 <mvc:resources location="/WEB-INF/node_modules/font-awesome/" mapping="/font-awesome/**"/>
 <mvc:resources location="/WEB-INF/node_modules/metismenu/" mapping="/metismenu/**"/>
+<mvc:resources location="/WEB-INF/node_modules/react-bootstrap-star-rating/" mapping="/star-rating/**"/>
+<mvc:resources location="/WEB-INF/node_modules/angular-ui-bootstrap/" mapping="/angular-ui-bootstrap/**"/>
 <!-- spring은 WEB-INF를 인식 하지 못한다. 그래서 mapping 해야 함. mapping의 이름은 동일하지 않아도 된다. -->
 
 </beans>

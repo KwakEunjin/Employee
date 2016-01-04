@@ -9,6 +9,7 @@
 <c:url var="angular_loading_bar_css" 		value="/angular-loading-bar/build/loading-bar.css"/>
 <c:url var="font_awesome_css" 				value="/font-awesome/css/font-awesome.css"/>
 <c:url var="metismenu_css" 					value="/metismenu/dist/metisMenu.css"/>
+<c:url var="star_rating_css" 				value="/star-rating/node_modules/bootstrap-star-rating/css/star-rating.css"/>
 <!-- var(변수)부분은 -대쉬가 안되서 반드시 _언더바로 써야 한다. -->
 
 
@@ -16,6 +17,7 @@
 <link rel="stylesheet" href="${angular_loading_bar_css}"/>
 <link rel="stylesheet" href="${font_awesome_css}"/>
 <link rel="stylesheet" href="${metismenu_css}"/>
+<link rel="stylesheet" href="${star_rating_css}"/>
 
 
 
@@ -30,6 +32,8 @@
 <c:url var="angular_loading_bar" 			value="/angular-loading-bar/build/loading-bar.js"/>
 <c:url var="ngmap" 							value="/ngmap/build/scripts/ng-map.js"/>
 <c:url var="metismenu_js" 					value="/metismenu/dist/metisMenu.js"/>
+<c:url var="star_rating_js" 				value="/star-rating/node_modules/bootstrap-star-rating/js/star-rating.js"/>
+<c:url var="ui_bootstrap_tpls_js" 			value="/angular-ui-bootstrap/ui-bootstrap-tpls.js"/>
 
 <script type="text/javascript" src="${jquery}"></script>
 <script type="text/javascript" src="${bootstrap_js}"></script>
@@ -41,3 +45,5 @@
 <script type="text/javascript" src="${angular_loading_bar}"></script>
 <script type="text/javascript" src="${ngmap}"></script>
 <script type="text/javascript" src="${metismenu_js}"></script>
+<script type="text/javascript" src="${star_rating_js}"></script>
+<script type="text/javascript" src="${ui_bootstrap_tpls_js}"></script>

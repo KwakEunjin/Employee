@@ -29,6 +29,7 @@
 	app.controller("mainController", function($scope, $http) {
 		console.log("mainController...");
 		
+		
 		$scope.$watch("loginstatus", function() {
 			console.log("$watch... loginstatus");
 			if ($scope.loginstatus == true)
@@ -125,7 +126,6 @@
 			</div>
 		</div>
 	</div>
-
-
+	
 </body>
 </html>
